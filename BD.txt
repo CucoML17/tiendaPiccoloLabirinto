@@ -1,0 +1,25 @@
+Entidad: Categoria
+Atributos: nombreCategoria (String), status (numero o int64)
+
+Entidad: Nivel
+Atributos: nombreNivel (String), color (String. Nota, se guarda en HEX sin el #), status (numero o int64)
+
+Entidad: Producto
+Atributos: nombreProducto (String), descripcion (String), cantidad (numero o int64), precio (double), status (numero o int64), imagenUrl (String, referencia de la imagen guardada en cloudinary)
+idCategoria (String, es una simulación de llave foránea, hace referencia a la llave primaria propia de Firebase de la Categoria a la que está relacionada)
+idNivel (String, es una simulación de llave foránea, hace referencia a la llave primaria propia de Firebase del Nivel al que está relacionado)
+
+Entidad: Pedido
+Atributos: nombrePide (String), fechaPedido (String pero con formato DD/MM/YYYY), telefono (String), horaPedido (String pero con formato HH:MM), totPagar (double), status (número o int64), ip(String), idCliente (String), fechaCreación (String)
+
+Entidad: DetallePedido
+Atributos: cantidad (numero o int64), 
+idPedido (String, es una simulación de llave foránea, hace referencia a la llave primaria propia de Firebase de Pedido a la que está relacionada)
+idProducto (String, es una simulación de llave foránea, hace referencia a la llave primaria propia de Firebase de Producto al que está relacionada)
+
+Entidad: Usuario
+Atributos: username (String), contrasena (String), status(integer), nombre(String)
+idRol (String, es una simulación de llave foránea, hace referencia a la llave primaria propia de Firebase de Rol al que está relacionado)
+
+Entidad: Rol
+Atributos: nombreRol (String)

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Carrito de Compras</title>
+
+    <!-- Bootstrap CSS 4.4.1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        #header-container {
+            display: contents;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .scrollable-cart-list {
+            max-height: 58vh;
+            overflow-y: auto;
+        }
+
+        .input-cant-cart {
+            width: 60px;
+            text-align: center;
+        }
+
+        .item-out-of-stock {
+            background-color: #fff8f8;
+            border-left: 4px solid #dc3545 !important;
+        }
+
+        /* Encabezado pegajoso para las columnas */
+        .cart-table-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        /* Total del Pedido en Verde Esmeralda Elegante */
+        .monto-total-pedido {
+            color: #2e7d32 !important;
+        }
+
+        /* Botón Cancelar Pedido (Relleno rojo sólido) */
+        .btn-cancelar-solido {
+            background-color: #b41b2b !important;
+            border-color: #b41b2b !important;
+            color: #ffffff !important;
+        }
+
+        .btn-cancelar-solido:hover {
+            background-color: #700d17 !important;
+            border-color: #700d17 !important;
+            color: #ffffff !important;
+        }
+
+        /* =========================================================
+           AJUSTES RESPONSIVOS PARA SMARTPHONE (< 768px)
+           ========================================================= */
+        @media (max-width: 767.98px) {
+            /* Compactar el padding del contenedor general */
+            main.container {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+                margin-top: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            #tarjetaCarrito .card-header {
+                padding: 0.5rem 0.75rem !important;
+            }
+
+            #tarjetaCarrito .card-header h4 {
+                font-size: 1rem !important;
+                margin: 0 !important;
+            }
+
+            #tarjetaCarrito .card-header #badgeTotalItems {
+                font-size: 0.7rem !important;
+                padding: 0.25em 0.5em !important;
+            }
+
+            /* Altura base para teléfonos estándar / compactos */
+            .scrollable-cart-list {
+                max-height: 42vh !important;
+            }
+
+            #listaCarrito .list-group-item {
+                padding: 0.4rem 0.25rem !important;
+            }
+
+            /* Reducir miniatura e inputs */
+            .cart-item-img {
+                width: 44px !important;
+                height: 44px !important;
+            }
+
+            .input-cant-cart {
+                width: 38px !important;
+                height: 28px !important;
+                font-size: 0.8rem !important;
+                padding: 0 !important;
+            }
+
+            /* Reducción de tamaños en la sección de Total */
+            #footerCarrito {
+                padding: 0.6rem 0.75rem !important;
+            }
+
+            #footerCarrito .h5 {
+                font-size: 0.85rem !important;
+            }
+
+            #footerCarrito .h3 {
+                font-size: 1.15rem !important;
+            }
+
+            /* Ajustes finos de tipografía de botones en Smartphone */
+            .btn-mobile-opt {
+                font-size: 0.75rem !important;
+                padding: 0.35rem 0.2rem !important;
+                white-space: nowrap !important;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .btn-mobile-main {
+                font-size: 0.85rem !important;
+                padding: 0.45rem 0.5rem !important;
+            }
+        }
+
+        /* Ajuste automático para Smartphones de pantalla alta (ej. >= 700px de altura) */
+        @media (max-width: 767.98px) and (min-height: 700px) {
+            .scrollable-cart-list {
+                max-height: 55vh !important;
+            }
+        }
+
+
+        /* Transición para cambio suave de estado */
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Animación de alerta al presionar Continuar sin cumplir el mínimo */
+        @keyframes shakeMinimo {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .shake-alert {
+            animation: shakeMinimo 0.4s ease-in-out;
+        }
+
+
+        /* Cambiar el fondo a negro y texto a blanco para los ítems activos en los dropdowns */
+        .dropdown-item.active, 
+        .dropdown-item:active {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        }
+
+        /* Opcional: Estilo cuando pasas el cursor por encima (hover / focus) si deseas uniformidad */
+        .dropdown-item:hover, 
+        .dropdown-item:focus {
+        background-color: #f8f9fa;
+        color: #000000;
+        }
+
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- Header Dinámico cargado mediante Fetch -->
+    <header id="header-container"></header>
+
+    <main class="container my-4">
+        <!-- Pantalla de Carga Inicial -->
+        <div id="loadingInicial" class="text-center py-5 my-5">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Cargando...</span>
+            </div>
+            <p class="mt-3 text-muted font-weight-bold">Cargando tu carrito...</p>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <!-- Tarjeta Principal del Carrito -->
+                <div class="card shadow-sm border-0 d-none" id="tarjetaCarrito">
+                    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
+                        <h4 class="m-0 font-weight-bold text-dark">
+                            Mi Carrito de Compras
+                        </h4>
+                        <span class="badge badge-dark text-white p-2" id="badgeTotalItems">0 artículos</span>
+                    </div>
+
+                    <div class="card-body p-0">
+                        <!-- Alerta global de stock -->
+                        <div id="alertaGlobalStock" class="alert alert-warning m-3 d-none align-items-center" role="alert">
+                            <i class="fas fa-exclamation-triangle fa-lg mr-2"></i>
+                            <div>
+                                <strong>¡Atención!</strong> Algunos productos en tu carrito sufrieron cambios de disponibilidad.
+                            </div>
+                        </div>
+
+                        <!-- Estado carrito vacío -->
+                        <div id="contenedorVacio" class="text-center py-5 d-none">
+                            <i class="fas fa-cart-arrow-down fa-4x text-muted mb-3"></i>
+                            <h5 class="text-muted">Tu carrito de compras está vacío</h5>
+                            <p class="text-muted small mb-4">¡Explora nuestro catálogo y agrega los productos que te gusten!</p>
+                            <a href="index.html" class="btn badge-dark font-weight-bold">
+                                <i class="fas fa-store mr-1"></i> Ir al catálogo
+                            </a>
+                        </div>
+
+                        <!-- Lista de productos -->
+                        <div id="contenedorLista" class="scrollable-cart-list px-2 px-md-3 py-2">
+                            <!-- Encabezado de columnas (Solo Desktop/Tablet) -->
+                            <div class="row font-weight-bold text-uppercase small py-2 px-3 border-bottom bg-light cart-table-header d-none d-md-flex align-items-center">
+                                <div class="col-1 text-center">#</div>
+                                <div class="col-5">Producto</div>
+                                <div class="col-3 text-center">Cantidad</div>
+                                <div class="col-2 text-right">Subtotal</div>
+                                <div class="col-1 text-center">Quitar</div>
+                            </div>
+
+                            <ul class="list-group list-group-flush" id="listaCarrito">
+                                <!-- Se inyecta dinámicamente -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Resumen del Carrito y Botones -->
+                    <div class="card-footer bg-white p-3 border-top" id="footerCarrito">
+                        <div class="d-flex justify-content-end align-items-center mb-2 mb-md-3">
+                            <span class="h5 m-0 font-weight-bold text-dark mr-2">Total aproximado:</span>
+                            <span class="h3 m-0 font-weight-bold monto-total-pedido" id="lblMontoTotal">$0.00</span>
+                        </div>
+
+                        <!-- NOTA DE MONTO MÍNIMO (AGREGAR AQUÍ) -->
+                        <div id="contenedorMontoMinimo" class="mb-2 text-right">
+                            <small id="notaMontoMinimo" class="text-muted font-weight-bold transition-all">
+                                <i class="fas fa-info-circle mr-1"></i> El monto mínimo de compra es de $100.00
+                            </small>
+                        </div>
+
+                        <!-- Estructura de botones responsiva compatible con Bootstrap 4 -->
+                        <div class="row no-gutters align-items-center">
+                            <!-- Fila 1 en móvil: Seguir comprando (Col 6) y Vaciar carrito (Col 6) -->
+                            <div class="col-6 col-md-auto pr-1 pr-md-0 mb-2 mb-md-0">
+                                <a href="index.html" class="btn btn-secondary font-weight-bold w-100 w-md-auto mr-md-2 btn-mobile-opt">
+                                    <i class="fas fa-arrow-left mr-1"></i> Seguir comprando
+                                </a>
+                            </div>
+                            <!-- Se agrega ml-md-2 para separar respecto a 'Seguir comprando' únicamente en Tablet/PC -->
+                            <div class="col-6 col-md-auto pl-1 pl-md-0 ml-md-2 mb-2 mb-md-0">
+                                <button type="button" class="btn btn-cancelar-solido font-weight-bold w-100 w-md-auto btn-mobile-opt" id="btnCancelarPedido">
+                                    <i class="fas fa-trash-alt mr-1"></i> Vaciar carrito
+                                </button>
+                            </div>
+
+                            <!-- Fila 2 en móvil (Col 12) / Alineado a la derecha en PC (ml-md-auto) -->
+                            <div class="col-12 col-md-auto ml-md-auto">
+                                <button type="button" class="btn btn-dark font-weight-bold w-100 w-md-auto btn-mobile-main" id="btnContinuarPedido">
+                                    Continuar pedido <i class="fas fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/footer-js.js"></script>
+
+
+    <!-- Bootstrap JS & Dependencias -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+
+    <!-- Script Controlador -->
+    <script type="module" src="js/carrito-compras-js.js"></script>
+</body>
+</html>

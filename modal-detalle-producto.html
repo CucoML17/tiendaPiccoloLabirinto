@@ -1,0 +1,79 @@
+<!-- Modal de Detalle de Producto (Ampliado a XL) -->
+<div class="modal fade" id="modalDetalleProducto" tabindex="-1" role="dialog" aria-labelledby="modalDetalleProductoTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered my-2 my-sm-auto" role="document">
+    <div class="modal-content border-0 shadow-lg">
+      
+      <!-- Botón de Cierre superior -->
+      <div class="modal-header border-0 pb-0 position-relative p-2 p-sm-3" style="z-index: 10;">
+        <button type="button" class="close px-3 py-1" data-dismiss="modal" aria-label="Close" style="outline: none;">
+          <span aria-hidden="true" class="h2 mb-0">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body p-3 p-md-4 pt-0">
+        <div class="row align-items-center">
+          
+          <!-- Columna Izquierda: Imagen Grande -->
+          <div class="col-12 col-lg-7 mb-3 mb-lg-0 text-center">
+            <div class="modal-img-container bg-light rounded p-2 d-flex align-items-center justify-content-center">
+              <img id="modalProductoImagen" src="" alt="Producto" class="img-fluid rounded modal-producto-img">
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Detalles del Producto -->
+          <div class="col-12 col-lg-5 d-flex flex-column justify-content-between pl-lg-4">
+            <div>
+              <!-- Badges Categoría y Nivel -->
+              <div class="d-flex align-items-center flex-wrap mb-2" style="gap: 6px;">
+                <span class="badge badge-secondary px-2 py-1" id="modalProductoCategoria">Categoría</span>
+                <span class="badge px-2 py-1 text-white" id="modalProductoNivel" style="background-color: #6c757d;">Nivel</span>
+              </div>
+
+              <!-- Nombre del Producto -->
+              <h3 class="font-weight-bold text-dark mb-1 modal-titulo-responsive" id="modalProductoNombre">Nombre del Producto</h3>
+              
+              <!-- Precio Verde Esmeralda Elegante -->
+              <h4 class="precio-producto mb-2" id="modalProductoPrecio">$0.00</h4>
+
+              <!-- Descripción -->
+              <div class="mb-3">
+                <label class="modal-descripcion-titulo text-uppercase mb-1">Descripción</label>
+                <p class="modal-descripcion-texto mb-0 modal-desc-responsive" id="modalProductoDescripcion">
+                  Sin descripción disponible.
+                </p>
+              </div>
+            </div>
+
+              <!-- Formulario de Cantidad y Botón Añadir -->
+              <div class="border-top pt-2 mt-2">
+                <label class="modal-label-cantidad font-weight-bold mb-2">Cantidad (Máximo 2 piezas):</label>
+                
+                <div class="d-flex align-items-center flex-nowrap" style="gap: 10px;">
+                  <!-- Selector de Cantidad -->
+                  <div class="input-group modal-input-cant-wrapper">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-cantidad-control px-2 px-sm-3" type="button" id="btnDecrementarCant">-</button>
+                    </div>
+                    <input type="number" class="form-control text-center font-weight-bold bg-white px-1" id="modalProductoCantidad" value="1" min="1" max="2" readonly>
+                    <div class="input-group-append">
+                      <button class="btn btn-cantidad-control px-2 px-sm-3" type="button" id="btnIncrementarCant">+</button>
+                    </div>
+                  </div>
+
+                  <!-- Botón Añadir -->
+                  <button class="btn btn-modal-agregar py-2 flex-grow-1 text-nowrap" id="btnConfirmarAgregarCarrito">
+                    <i class="fas fa-cart-plus mr-1"></i> Añadir
+                  </button>
+                </div>
+
+                <small class="modal-text-stock d-block mt-2 font-weight-bold text-secondary" id="modalProductoStock">Stock disponible: 0</small>
+              </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

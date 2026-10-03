@@ -1,0 +1,124 @@
+/* css/estilosGlobales.css */
+
+:root {
+    --bg-body: #f4f5f7;
+    --dark-accent: #121416;
+    --dark-hover: #2b2f33;
+    --border-color: #e0e4e8;
+    --text-muted: #6c757d;
+}
+
+body {
+    background-color: var(--bg-body);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 15px;
+}
+
+/* Estructura de Tarjetas */
+.login-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 420px;
+    overflow: hidden;
+}
+
+/* Encabezados */
+.login-header {
+    background-color: var(--dark-accent);
+    color: #ffffff;
+    padding: 32px 25px 24px 25px;
+    text-align: center;
+}
+
+.login-header h4 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+/* Subtítulo resaltado */
+.login-subtitle {
+    color: #e2e8f0;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 0;
+    letter-spacing: 0.2px;
+}
+
+.login-body {
+    padding: 30px 25px;
+}
+
+/* Inputs y Formularios */
+.form-control {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    padding: 12px 15px;
+    height: auto;
+    font-size: 0.95rem;
+}
+
+.form-control:focus {
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 0.2rem rgba(18, 20, 22, 0.15);
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+    color: var(--text-muted);
+    border-radius: 6px 0 0 6px;
+}
+
+/* Botones con estilo neutro / oscuro */
+.btn-dark-custom {
+    background-color: var(--dark-accent);
+    border-color: var(--dark-accent);
+    color: #ffffff;
+    padding: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-dark-custom:hover {
+    background-color: var(--dark-hover);
+    border-color: var(--dark-hover);
+    color: #ffffff;
+}
+
+.btn-outline-secondary-custom {
+    color: var(--text-muted);
+    border: 1px solid #ced4da;
+    background: transparent;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.btn-outline-secondary-custom:hover {
+    background-color: #e9ecef;
+    color: #212529;
+    text-decoration: none;
+}
+
+.toggle-password {
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+}

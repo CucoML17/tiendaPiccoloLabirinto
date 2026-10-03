@@ -1,0 +1,76 @@
+/* Contenedor con scroll interno */
+.table-scroll-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Encabezado Sticky */
+.table-scroll-container table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+/* Reducción de padding vertical en celdas de la tabla */
+.table-dense th,
+.table-dense td {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+  font-size: 0.9rem;
+}
+
+/* Botones circulares compactos */
+.btn-circle-sm {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+/* Ajuste de altura en inputs compactos (form-control-sm) con input-group */
+.input-group-sm > .input-group-prepend > .input-group-text {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+
+.txtG{
+  font-size: 12px;
+}
+
+.txtG-2{
+  font-size: 150px !important;
+}
+
+
+/* css/globalAdminEstilos.css */
+
+/* css/globalAdminEstilos.css */
+
+/* Regla base para mantener posicionamiento relativo en las ligas del menú */
+#adminMenuColapso a {
+    position: relative;
+    padding-bottom: 6px; /* Da un espacio de respiración antes de la línea */
+}
+
+/* Indicador inferior elegante para la opción activa sin alterar márgenes */
+#adminMenuColapso a.nav-admin-active {
+    color: #000000 !important;
+}
+
+#adminMenuColapso a.nav-admin-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #000000;
+    border-radius: 2px;
+}

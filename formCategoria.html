@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Formulario de Categoría - Panel Admin</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Hojas de Estilos Reusables Admin -->
+    <link rel="stylesheet" href="css/adminstyle.css">
+    <link rel="stylesheet" href="css/globalAdminEstilos.css">
+
+    <script type="module" src="js/auth-guard.js"></script>
+</head>
+<body class="bg-light">
+
+    <!-- Contenedor del Header Administrativo -->
+    <header id="header-container"></header>
+
+    <!-- Área de Trabajo Principal -->
+    <main class="container my-2" style="max-width: 1000px;">
+
+        <!-- Tarjeta del Formulario -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white py-3">
+                <h5 class="font-weight-bold text-dark m-0">
+                    Registrar Nueva Categoría
+                </h5>
+            </div>
+            
+            <div class="card-body p-4">
+                <form id="formCategoria" class="needs-validation" novalidate>
+                    
+                    <!-- Campo: Nombre de la Categoría -->
+                    <div class="form-group mb-2">
+                        <!-- 1. Se cambió text-secondary por text-dark -->
+                        <label for="nombreCategoria" class="font-weight-bold text-dark small mt-0 mb-1 d-inline-block">
+                            Nombre de la categoría <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-light"><i class="fas fa-tag text-muted"></i></span>
+                            </div>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="nombreCategoria" 
+                                name="nombreCategoria"
+                                placeholder="Ej. Plástico, Metal, Artesanal." 
+                                required 
+                                pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+                                maxlength="50"
+                                autocomplete="off"
+                            >
+                            <div class="invalid-feedback">
+                                Por favor ingresa un nombre válido (solo letras y espacios, sin números ni caracteres especiales).
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- 2. Botones de Acción Responsivos en Sólido -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center">
+                        <!-- Botón Cancelar (Sólido Claro / Neutro) -->
+                        <a href="panelCategoria.html" class="btn btn-admin-clear font-weight-bold w-100 w-sm-auto px-4 mx-sm-2 mb-2 mb-sm-0" style="min-width: 200px; max-width: 100%;">
+                            <i class="fas fa-times mr-1"></i> Cancelar
+                        </a>
+                        <!-- Botón Guardar (Sólido Oscuro / Negro) -->
+                        <button type="submit" class="btn btn-dark font-weight-bold w-100 w-sm-auto px-4 mx-sm-2" style="min-width: 200px; max-width: 100%;">
+                            <i class="fas fa-save mr-1"></i> Guardar
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/footer-js.js"></script>
+
+    <!-- Script de Inyección del Header Admin -->
+    <script src="js/cargador-header.js"></script>
+
+    <!-- JS Dependencias -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+
+    <!-- Script ES6 Module con lógica de Firebase Firestore -->
+    <script type="module" src="js/firebase-categoria.js"></script>
+    <script type="module" src="js/header-admin.js"></script>
+</body>
+</html>

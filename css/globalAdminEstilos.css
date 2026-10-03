@@ -1,0 +1,260 @@
+/* Variables de Color del Tema */
+:root {
+    --btn-primary-custom: #1b2a47;        /* Azul Noche Profundo (Acciones Principales: Crear, Guardar) */
+    --btn-primary-hover: #111c33;
+    
+    --btn-clear-custom: #6c757d;          /* Gris Neutro Medio (Acción Limpiar) */
+    --btn-clear-hover: #5a6268;
+
+    --btn-accent-custom: #2b3a4a;         /* Alternativa Gris Plomo */
+}
+
+/* Botón de Acción Principal (Nueva Categoría, Agregar Producto, Guardar) */
+.btn-admin-primary {
+    background-color: var(--btn-primary-custom) !important;
+    border-color: var(--btn-primary-custom) !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-admin-primary:hover,
+.btn-admin-primary:focus {
+    background-color: #dee2e6 !important;
+    border-color: #adb5bd !important;
+    color: #212529 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de Limpieza o Reset de Filtros */
+.btn-admin-clear {
+    background-color: #495057 !important;
+    border-color: #495057 !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-admin-clear:hover,
+.btn-admin-clear:focus {
+    background-color: #dee2e6 !important;
+    border-color: #adb5bd !important;
+    color: #212529 !important;
+}
+
+/* Encabezados de Tabla Uniformes */
+.thead-admin-dark {
+    background-color: #1b2a47 !important;
+    color: #ffffff !important;
+}
+
+/* Ajuste Fino para Tablas Densas (Padding ajustado para evitar desbordamiento vertical) */
+.table-dense th, 
+.table-dense td {
+    padding: 0.3rem 0.5rem !important;
+    vertical-align: middle !important;
+}
+
+/* .text-dark {
+    font-size: 20px !important;
+} */
+
+
+
+/* ==========================================
+   AJUSTES RESPONSIVOS (SMARTPHONES)
+   ========================================== */
+@media (max-width: 575.98px) {
+    /* 1. Reducción del título principal en móviles */
+    main h4 {
+        font-size: 1.2rem !important; /* Ajusta este valor si prefieres más grande o pequeño */
+    }
+
+    /* 2. Reducción de tamaño de los botones circulares de acción en la tabla */
+    .btn-circle-sm {
+        width: 24px !important;
+        height: 24px !important;
+        padding: 0 !important;
+        font-size: 0.75rem !important; /* Reduce el tamaño del icono FontAwesome dinámicamente */
+        line-height: 28px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+
+/* ===================================================
+   AJUSTES RESPONSIVOS PARA PANEL PRODUCTOS (MÓVILES)
+   =================================================== */
+@media (max-width: 575.98px) {
+    /* 1. Filtros en una sola fila para móviles */
+    .col-filtro-custom {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    .col-filtro-custom select.form-control-sm {
+        font-size: 0.75rem !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    /* 2. Reducción de encabezados de la tabla (thead) */
+    .table thead th {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.2rem !important;
+    }
+
+    /* 3. Reducción del botón "Nuevo producto" */
+    .btn-nuevo-producto-movil {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    /* 4. Reducción de la celda y texto de la columna Descripción */
+    .col-descripcion-movil {
+        font-size: 0.70rem !important;
+        line-height: 1.1 !important;
+        max-width: 110px !important; /* Limita el ancho horizontal de la celda */
+        word-break: break-word;
+    }
+
+    /* 5. Acomodo de acciones: 2 arriba (Editar, Restock) y 1 abajo (Eliminar) */
+    .acciones-grid-movil {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        max-width: 65px !important; /* Reduce drásticamente el ancho requerido */
+        margin: 0 auto !important;
+        gap: 3px !important;
+    }
+
+    /* Quitar márgenes individuales para que mande el gap */
+    .acciones-grid-movil .btn-circle-sm {
+        margin: 3px !important;
+    }
+
+
+
+    /* Ajuste de padding general en celdas para móviles */
+    .table-dense th, 
+    .table-dense td {
+        padding: 0.35rem 0.2rem !important;
+    }
+}
+
+
+
+/* =================================================================
+   AJUSTES RESPONSIVOS PARA PANEL PEDIDOS PENDIENTES (MÓVILES)
+   ================================================================= */
+@media (max-width: 575.98px) {
+    /* 1. Fecha y Hora de entrega compartiendo fila al 50% */
+    .col-filtro-mitad {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    /* Reducción de inputs de fecha/hora en móviles */
+    .col-filtro-mitad input.form-control-sm {
+        font-size: 0.75rem !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    /* 2. Reducción tipográfica general de la tabla */
+    .table-dense thead th {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.25rem !important;
+    }
+
+    .table-dense tbody td {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.25rem !important;
+    }
+
+    /* 3. Acomodo de botones de acciones: 2 arriba (Ver, Completar) y 1 abajo (Cancelar) */
+    .acciones-grid-movil {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        max-width: 65px !important;
+        margin: 0 auto !important;
+        gap: 5px !important;
+    }
+
+    .acciones-grid-movil .btn-circle-sm {
+        margin: 0 !important;
+    }
+}
+
+
+
+/* AJUSTE EXCLUSIVO PARA SMARTPHONES (Pantallas menores a 576px) */
+@media (max-width: 575.98px) {
+    /* Ajuste de botones en la misma fila para smartphones */
+    .card-body form .btn {
+        font-size: 0.8rem !important;         /* Tamaño de texto más compacto */
+        padding: 0.35rem 0.5rem !important;   /* Reduce relleno interno (alto y ancho) */
+        min-width: 110px !important;          /* Ancho mínimo adecuado para caber juntos */
+        width: 48% !important;                /* Cada botón toma casi la mitad del ancho */
+    }
+}
+
+
+/* Ajuste de Badge Vencido solo para Smartphones */
+@media (max-width: 575.98px) {
+    .badge-vencido-sm {
+        font-size: 6px !important;     /* Reduce el tamaño del texto */
+        padding: 0.2em 0.4em !important; /* Reduce el relleno/márgenes internos */
+        display: inline-block;          /* Mantiene la proporción correcta */
+        margin-top: 2px;               /* Separa ligeramente del nombre del cliente */
+    }
+    
+    .badge-vencido-sm i {
+        font-size: 7px !important;     /* Reduce el icono de reloj */
+        margin-right: 2px !important;
+    }
+}
+
+
+/* Todos los botones: fondo blanco, texto/flechas negros */
+.pagination .page-link {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  color: #000000 !important;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Efecto hover suave al pasar el cursor */
+.pagination .page-link:hover {
+  background-color: #f8f9fa;
+  border-color: #ced4da;
+  color: #000000 !important;
+}
+
+/* Página activa: fondo negro con texto y borde blanco */
+.pagination .page-item.active .page-link {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* Botones deshabilitados (flechas apagadas cuando no se pueden clicar) */
+.pagination .page-item.disabled .page-link {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  color: #6c757d !important;
+  opacity: 0.6;
+}
+
+/* Quitar el borde/sombra azul al hacer clic */
+.pagination .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.125);
+}

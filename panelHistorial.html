@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Historial de Pedidos - Panel Admin</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Hoja de Estilos Reusable Admin -->
+    <link rel="stylesheet" href="css/adminstyle.css">
+    <link rel="stylesheet" href="css/globalAdminEstilos.css">
+    <script type="module" src="js/auth-guard.js"></script>
+
+    <style>
+        /* Scroll vertical para el contenedor del detalle de productos */
+        .table-detalle-container {
+            max-height: 350px; /* Controla la altura máxima antes de mostrar scroll */
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Fijar el thead en la parte superior del contenedor al hacer scroll */
+        .table-detalle-container table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #343a40 !important; /* Mantiene el color bg-dark de Bootstrap */
+            color: #ffffff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.15); /* Sombra suave para separar de los datos */
+        }
+    </style>
+
+</head>
+<body class="bg-light">
+
+    <!-- Contenedor del Header Administrativo -->
+    <header id="header-container"></header>
+
+    <!-- Área de Trabajo Principal -->
+    <main class="container my-3" style="max-width: 1350px;">
+
+        <!-- Encabezado de Sección -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="font-weight-bold text-dark m-0">
+                Historial de Pedidos
+            </h4>
+        </div>
+
+        <!-- 1. SECCIÓN: BARRA DE FILTRADO (COLAPSABLE - EN 2 FILAS EQUILIBRADAS) -->
+        <div class="card mb-3 shadow-sm border-0">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-2">
+                <span class="font-weight-bold text-dark small">
+                    <i class="fas fa-filter mr-1"></i> Filtros de búsqueda e historial
+                </span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2" type="button" data-toggle="collapse" data-target="#collapseFiltros" aria-expanded="true" aria-controls="collapseFiltros">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+            
+            <div class="collapse show" id="collapseFiltros">
+                <div class="card-body bg-white py-3">
+                    <form onsubmit="event.preventDefault();">
+                        
+                        <!-- FILA 1: Nombre, Teléfono (Sin ícono) y Rango de Fechas -->
+                        <div class="form-row mb-2">
+                            <!-- Filtro por Cliente -->
+                            <div class="col-12 col-md-5 col-lg-5 mb-2 mb-md-0">
+                                <label for="filtroCliente" class="small font-weight-bold text-dark mb-1 d-block">Cliente / Nombre</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-light"><i class="fas fa-search text-dark"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm" id="filtroCliente" placeholder="Buscar por cliente registrado..." autocomplete="off">
+                                </div>
+                            </div>
+
+                            <!-- Filtro por Teléfono (Input puro) -->
+                            <div class="col-12 col-md-3 col-lg-3 mb-2 mb-md-0">
+                                <label for="filtroTelefono" class="small font-weight-bold text-dark mb-1 d-block">Teléfono</label>
+                                <input type="text" class="form-control form-control-sm" id="filtroTelefono" placeholder="10 dígitos..." maxlength="10">
+                            </div>
+
+                            <!-- Rango de Fechas (Inicio - Fin) -->
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label class="small font-weight-bold text-dark mb-1 d-block">Rango de Fechas Entrega</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="date" class="form-control form-control-sm px-1" id="filtroFechaInicio" title="Fecha inicio">
+                                    <div class="input-group-prepend input-group-append">
+                                        <span class="input-group-text bg-light px-2 py-0 border-left-0 border-right-0 small" style="line-height: 1;">a</span>
+                                    </div>
+                                    <input type="date" class="form-control form-control-sm px-1" id="filtroFechaFin" title="Fecha fin">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FILA 2: Rango de Horas, Monto Total ($) y Botón Limpiar -->
+                        <div class="form-row align-items-end">
+                            
+                            <!-- Rango de Horas (Inicio - Fin) -->
+                            <div class="col-12 col-sm-6 col-md-5 col-lg-5 mb-2 mb-md-0">
+                                <label class="small font-weight-bold text-dark mb-1 d-block">Rango de Horas Entrega</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="time" class="form-control form-control-sm px-1" id="filtroHoraInicio" title="Hora inicio">
+                                    <div class="input-group-prepend input-group-append">
+                                        <span class="input-group-text bg-light px-2 py-0 border-left-0 border-right-0 small" style="line-height: 1;">a</span>
+                                    </div>
+                                    <input type="time" class="form-control form-control-sm px-1" id="filtroHoraFin" title="Hora fin">
+                                </div>
+                            </div>
+
+                            <!-- Rango de Total ($) -->
+                            <div class="col-12 col-sm-6 col-md-5 col-lg-5 mb-2 mb-md-0">
+                                <label class="small font-weight-bold text-dark mb-1 d-block">Monto Total ($)</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" step="0.01" class="form-control form-control-sm" id="filtroMontoMin" placeholder="Mín">
+                                    <div class="input-group-prepend input-group-append">
+                                        <span class="input-group-text bg-light px-1 py-0 border-left-0 border-right-0 small" style="line-height: 1;">-</span>
+                                    </div>
+                                    <input type="number" step="0.01" class="form-control form-control-sm" id="filtroMontoMax" placeholder="Máx">
+                                </div>
+                            </div>
+
+                            <!-- Botón Limpiar -->
+                            <div class="col-12 col-md-2 col-lg-2">
+                                <button type="button" class="btn btn-admin-clear btn-sm btn-block font-weight-bold" id="btnLimpiarFiltros" title="Limpiar todos los filtros" style="height: 31px; line-height: 1;">
+                                    <i class="fas fa-eraser mr-1"></i> Limpiar
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA DE HISTORIAL DE PEDIDOS -->
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-1">
+
+                <div class="table-scroll-container border rounded">
+                    <table class="table table-hover table-striped table-bordered table-dense m-0">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" class="text-center" style="width: 25%;">Cliente</th>
+                                <th scope="col" class="text-center" style="width: 15%;">Teléfono</th>
+                                
+                                <!-- En móvil se unifican Fecha y Hora en una sola columna -->
+                                <th scope="col" class="text-center d-sm-none" style="width: 20%;">Fecha y Hora</th>
+                                
+                                <!-- En Escritorio/Tablet se muestran separadas -->
+                                <th scope="col" class="text-center d-none d-sm-table-cell" style="width: 15%;">Fecha Entrega</th>
+                                <th scope="col" class="text-center d-none d-sm-table-cell" style="width: 15%;">Hora Entrega</th>
+                                
+                                <th scope="col" class="text-center" style="width: 15%;">Total Pagado</th>
+                                <th scope="col" class="text-center" style="width: 15%;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaHistorialPedidosBody">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- PAGINACIÓN CON UNIFORMIDAD VISUAL -->
+        <nav class="d-flex justify-content-center mt-3" aria-label="Paginación de historial de pedidos">
+            <ul class="pagination pagination-sm m-0" id="contenedorPaginacion">
+                <!-- Se genera dinámicamente desde JS -->
+            </ul>
+        </nav>
+
+        
+        </div>
+
+     
+
+        <!-- Modal Detalle del Pedido -->
+        <div class="modal fade" id="modalDetallePedido" tabindex="-1" role="dialog" aria-labelledby="modalDetallePedidoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content border-0 shadow-lg">
+                    <div class="modal-header bg-dark text-white align-items-center">
+                        <h5 class="modal-title font-weight-bold" id="modalDetallePedidoLabel">
+                            Detalle del Pedido
+                        </h5>
+                        <button type="button" class="close text-white opacity-100" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body p-3 p-md-4">
+                        <!-- Información General del Cliente -->
+                        <div class="card mb-3 bg-light border-0 shadow-sm">
+                            <div class="card-body p-2">
+                                <div class="row text-center text-md-left">
+                                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                        <p class="mb-1 text-secondary small uppercase font-weight-bold">Cliente</p>
+                                        <h6 class="font-weight-bold text-dark mb-0" id="detModalCliente">-</h6>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <p class="mb-1 text-secondary small uppercase font-weight-bold">Teléfono</p>
+                                        <h6 class="font-weight-bold text-dark mb-0" id="detModalTelefono">-</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabla Responsiva de Productos -->
+                        <div class="table-detalle-container rounded shadow-sm border mb-3">
+                            <table class="table table-hover mb-0 align-middle">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th scope="col" class="py-2" style="width: 70px;">Imagen</th>
+                                        <th scope="col" class="text-left py-2">Producto</th>
+                                        <th scope="col" class="py-2">Cant.</th>
+                                        <th scope="col" class="py-2">P. Unitario</th>
+                                        <th scope="col" class="text-right py-2">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="detModalBodyTabla">
+                                    <!-- Se renderiza dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Gran Total -->
+                        <div class="d-flex justify-content-end align-items-center p-2 bg-light rounded border">
+                            <span class="mb-0 font-weight-bold text-secondary mr-2">Total a Pagar:</span>
+                            <span class="h4 mb-0 font-weight-bold text-success" style="color: #2e7d32 !important;" id="detModalTotal">$0.00</span>
+                        </div>  
+                    </div>
+
+                    <div class="modal-footer bg-light border-top-0">
+                        <button type="button" class="btn btn-secondary font-weight-bold px-4" data-dismiss="modal">
+                            <i class="fas fa-times mr-1"></i> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/footer-js.js"></script>
+
+    <!-- Script de Inyección del Header Admin -->
+    <script src="js/cargador-header.js"></script>
+
+    <!-- JS Dependencias -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+
+    <!-- Script de Integración Javascript -->
+    <script type="module" src="js/panel-historial.js"></script>
+    <script type="module" src="js/header-admin.js"></script>
+</body>
+</html>

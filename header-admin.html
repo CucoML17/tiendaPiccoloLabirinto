@@ -1,0 +1,84 @@
+<!-- Fragmento de Header Administrativo -->
+
+<!-- Barra superior negra (No sticky) -->
+<nav class="text-white py-0 px-3" style="background-color: #000000;">
+  <div class="d-flex justify-content-between align-items-center">
+    <!-- Izquierda -->
+    <div>
+      <a href="index.html" class="text-white font-weight-bold" style="text-decoration: underline;">
+        <i class="fas fa-store mr-1"></i> Ir a la tienda
+      </a>
+    </div>
+
+    <!-- Derecha -->
+
+    <div class="d-flex align-items-center">
+      <span class="badge badge-warning mr-3 px-2 py-1 font-weight-bold">Modo Admin</span>
+      <a href="#" id="btnCerrarSesion" class="text-white" style="text-decoration: underline;">
+        <i class="fas fa-sign-out-alt mr-1"></i> Salir
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- SECCIÓN STICKY: Logo + Menú Administrativo -->
+<div class="sticky-top bg-white border-bottom shadow-sm" style="z-index: 1020;">
+
+  <!-- Segunda sección: Logo Centrado -->
+  <div class="container-fluid py-1 bg-light border-bottom text-center">
+    <a href="panelAdmin.html" class="navbar-brand font-weight-bold text-dark m-0 h4">
+      Picolo labirinto - Panel de Control
+    </a>
+  </div>
+
+  <!-- Tercera sección: Navbar de Navegación del Admin (Grid 1 - 10 - 1) -->
+  <div class="container-fluid px-3 px-md-5 py-1 bg-white">
+    <div class="row align-items-center">
+
+      <!-- Botón Hamburguesa (SOLO VISIBLE EN MÓVILES: d-block d-md-none) -->
+      <div class="col-12 d-block d-md-none text-center py-1">
+        <button class="btn btn-sm font-weight-bold" type="button" data-toggle="collapse" data-target="#adminMenuColapso" aria-expanded="false" aria-controls="adminMenuColapso">
+          <i class="fas fa-bars mr-1"></i> Menú de Gestión
+        </button>
+      </div>
+
+      <!-- Columna vacía izquierda (1/12) -->
+      <div class="d-none d-md-block col-md-1"></div>
+
+      <!-- Contenedor Principal de Opciones (10/12) -->
+      <div class="col-12 col-md-10">
+        <!-- Colapsable en móviles, visible y expandido automáticamente en escritorio (d-md-block) -->
+        <div class="collapse d-md-block" id="adminMenuColapso">
+          <div class="d-flex flex-column flex-md-row justify-content-center align-items-center py-0 py-md-0">
+            
+            <a href="/panelCategoria.html" class="text-dark font-weight-bold my-2 my-md-0 mx-md-4 mx-lg-5 text-decoration-none text-nowrap">
+              Categorías
+            </a>
+
+            <a href="/panelNiveles.html" class="text-dark font-weight-bold my-2 my-md-0 mx-md-4 mx-lg-5 text-decoration-none text-nowrap">
+              Niveles
+            </a>
+
+            <a href="/panelProductos.html" class="text-dark font-weight-bold my-2 my-md-0 mx-md-4 mx-lg-5 text-decoration-none text-nowrap">
+              Productos
+            </a>
+
+            <a href="/panelPedidosPendientes.html" class="text-dark font-weight-bold my-2 my-md-0 mx-md-4 mx-lg-5 text-decoration-none text-nowrap">
+              Pedidos
+            </a>
+
+            <a href="/panelHistorial.html" class="text-dark font-weight-bold my-2 my-md-0 mx-md-4 mx-lg-5 text-decoration-none text-nowrap">
+              Historial
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna vacía derecha (1/12) -->
+      <div class="d-none d-md-block col-md-1"></div>
+
+    </div>
+  </div>
+
+</div>

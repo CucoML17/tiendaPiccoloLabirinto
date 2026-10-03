@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Panel Administrativo</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script type="module" src="js/auth-guard.js"></script>
+
+    <style>
+        #header-container {
+            display: contents;
+        }
+
+        /* Estilos para el banner de bienvenida */
+        .welcome-hero {
+            background-color: #1a1d20;
+            border-left: 5px solid #343a40;
+        }
+
+        /* Tarjetas de acceso rápido */
+        .admin-card {
+            background-color: #212529;
+            border: 1px solid #343a40;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-4px);
+            border-color: #6c757d;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25) !important;
+        }
+
+        .admin-card-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #2c3036;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- Contenedor del Header Administrativo -->
+    <header id="header-container"></header>
+
+    <!-- Área de Trabajo Principal del Panel -->
+    <main class="container my-4">
+
+        <!-- Banner de Bienvenida Principal -->
+        <div class="welcome-hero text-white p-4 p-md-5 rounded shadow-sm mb-4">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <span class="badge badge-secondary text-uppercase tracking-wider px-3 py-2 mb-2 font-weight-bold">
+                        Panel de Control
+                    </span>
+                    <h1 class="display-5 font-weight-bold text-white mb-2">
+                        Bienvenido al Panel Administrativo
+                    </h1>
+                    <p class="lead text-light mb-0" style="opacity: 0.9; font-size: 1.05rem;">
+                        Gestiona de manera centralizada el catálogo del sistema: registra productos, administra categorías y niveles de stock, revisa pedidos pendientes y consulta el historial completo de operaciones.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-center d-none d-lg-block">
+                    <i class="fas fa-user-shield text-secondary" style="font-size: 5.5rem; opacity: 0.7;"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Título de Sección: Accesos Rápidos -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="font-weight-bold text-dark m-0">
+                <i class="fas fa-th-large mr-2 text-muted"></i>Módulos de Gestión
+            </h5>
+        </div>
+
+        <!-- Tarjetas Informativas / Accesos Rápidos -->
+        <div class="row">
+            <!-- Tarjeta: Productos -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card admin-card text-white h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="admin-card-icon mb-3">
+                                <i class="fas fa-box-open text-light fa-lg"></i>
+                            </div>
+                            <h5 class="card-title font-weight-bold mb-2">Productos</h5>
+                            <p class="card-text text-muted small">
+                                Alta, edición, precios y catálogo general de productos activos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta: Categorías y Niveles -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card admin-card text-white h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="admin-card-icon mb-3">
+                                <i class="fas fa-tags text-light fa-lg"></i>
+                            </div>
+                            <h5 class="card-title font-weight-bold mb-2">Categorías y Niveles</h5>
+                            <p class="card-text text-muted small">
+                                Clasificación del catálogo, jerarquías y estructura de inventario.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta: Reabastecimiento / Restock -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card admin-card text-white h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="admin-card-icon mb-3">
+                                <i class="fas fa-cubes text-light fa-lg"></i>
+                            </div>
+                            <h5 class="card-title font-weight-bold mb-2">Reabastecimiento</h5>
+                            <p class="card-text text-muted small">
+                                Ajustes de stock disponible, lotes e ingresos de inventario.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta: Pedidos e Historial -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card admin-card text-white h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="admin-card-icon mb-3">
+                                <i class="fas fa-clipboard-list text-light fa-lg"></i>
+                            </div>
+                            <h5 class="card-title font-weight-bold mb-2">Pedidos e Historial</h5>
+                            <p class="card-text text-muted small">
+                                Seguimiento de compras pendientes, despacho y consulta histórica.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Espacio reservado para las vistas detalladas que se integren posteriormente -->
+        <div id="secciones-admin-container"></div>
+
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/footer-js.js"></script>    
+
+    <!-- Script de Inyección Header Admin -->
+    <script>
+        fetch('header-admin.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el header admin:', error));
+    </script>
+
+    <!-- JS Dependencias -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="js/header-admin.js"></script>
+</body>
+</html>

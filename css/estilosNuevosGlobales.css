@@ -1,0 +1,387 @@
+:root {
+    --bg-body: #f4f5f7;
+    --dark-accent: #121416;
+    --dark-hover: #2b2f33;
+    --border-color: #e0e4e8;
+    --text-muted: #6c757d;
+}
+
+
+/* --- Estilos de Tarjetas de Producto --- */
+.card-product {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.card-product:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Imagen del producto */
+.product-img-wrapper {
+    height: 200px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img-wrapper img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Texto del Precio (Verde Esmeralda Elegante) */
+.precio-producto {
+    color: #2e7d32; /* Verde esmeralda profesional, nada llamativo/chillante */
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Categoría en la tarjeta */
+.categoria-texto {
+    color: #2b2f33; /* Oscuro neutro, reemplaza a text-muted */
+    font-size: 0.88rem; /* +1px aprox respecto a small de Bootstrap */
+    font-weight: 500;
+}
+
+/* Botón Añadir al Carrito (Negro elegante) */
+.btn-agregar-carrito {
+    background-color: var(--dark-accent) !important;
+    border-color: var(--dark-accent) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-agregar-carrito:hover:not(:disabled) {
+    background-color: var(--dark-hover) !important;
+    border-color: var(--dark-hover) !important;
+}
+
+.btn-agregar-carrito:disabled {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    opacity: 0.65;
+}
+
+/* Botones con estilo neutro / oscuro */
+.btn-dark-custom {
+    background-color: var(--dark-accent);
+    border-color: var(--dark-accent);
+    color: #ffffff;
+    padding: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-dark-custom:hover {
+    background-color: var(--dark-hover);
+    border-color: var(--dark-hover);
+    color: #ffffff;
+}
+
+.btn-outline-secondary-custom {
+    color: var(--text-muted);
+    border: 1px solid #ced4da;
+    background: transparent;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.btn-outline-secondary-custom:hover {
+    background-color: #e9ecef;
+    color: #212529;
+    text-decoration: none;
+}
+
+
+
+/* --- Estilos del Modal de Producto --- */
+
+/* Encabezado y títulos */
+.modal-descripcion-titulo {
+    font-size: 0.95rem; /* +2px aprox sobre small nativo */
+    font-weight: 700;
+    color: var(--dark-accent);
+}
+
+.modal-descripcion-texto {
+    color: #2b2f33 !important; /* Texto negro/oscuro accesible */
+    font-size: 0.93rem; /* +1px aprox */
+    line-height: 1.5;
+}
+
+/* Indicadores de cantidad y stock */
+.modal-label-cantidad,
+.modal-text-stock {
+    font-size: 0.91rem; /* +0.5px aprox */
+    color: #2b2f33;
+}
+
+/* Botones de incremento/decremento (- y +) */
+.btn-cantidad-control {
+    border-color: #ced4da;
+    color: var(--dark-accent);
+    font-weight: 700;
+}
+
+.btn-cantidad-control:hover {
+    background-color: #e9ecef;
+    color: var(--dark-accent);
+}
+
+/* Botón Añadir al Carrito del Modal (Negro elegante) */
+.btn-modal-agregar {
+    background-color: var(--dark-accent) !important;
+    border-color: var(--dark-accent) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-agregar:hover {
+    background-color: var(--dark-hover) !important;
+    border-color: var(--dark-hover) !important;
+}
+
+/* --- Estilos específicos para Detalle de Pedido (misPedidos) --- */
+
+/* Botón Recuperar Pedido (Negro elegante) */
+.btn-recuperar-pedido {
+    background-color: var(--dark-accent) !important;
+    border-color: var(--dark-accent) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.btn-recuperar-pedido:hover {
+    background-color: var(--dark-hover) !important;
+    border-color: var(--dark-hover) !important;
+    color: #ffffff !important;
+}
+
+/* Badge de Estado del Pedido en tono oscuro */
+.badge-estado-pedido {
+    background-color: var(--dark-accent) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Botón Ir al Catálogo (Relleno gris oscuro) */
+.btn-catalogo-solido {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #ffffff !important;
+}
+
+.btn-catalogo-solido:hover {
+    background-color: #5a6268 !important;
+    border-color: #545b62 !important;
+    color: #ffffff !important;
+}
+
+/* Botón Cancelar Pedido (Relleno rojo sólido) */
+.btn-cancelar-solido {
+    background-color: #b41b2b !important;
+    border-color: #b41b2b !important;
+    color: #ffffff !important;
+}
+
+.btn-cancelar-solido:hover {
+    background-color: #700d17 !important;
+    border-color: #700d17 !important;
+    color: #ffffff !important;
+}
+
+
+/* Total del Pedido en Verde Esmeralda Elegante */
+.monto-total-pedido {
+    color: #2e7d32 !important;
+}
+
+
+
+/* Responsivo en index.html: */
+/* --- Ajustes Grid Responsivo estilo E-Commerce (Móviles) --- */
+@media (max-width: 575.98px) {
+    /* Reduce la altura fija de la imagen para que la tarjeta no quede demasiado alta */
+    .product-img-wrapper {
+        height: 140px;
+    }
+
+    /* Padding interno reducido para aprovechar mejor el espacio */
+    .card-product .card-body {
+        padding: 0.5rem !important;
+    }
+
+    /* Reducción proporcional de fuentes */
+    .card-product .card-title {
+        font-size: 0.85rem;
+    }
+
+    .precio-producto {
+        font-size: 1.05rem;
+    }
+
+    .categoria-texto {
+        font-size: 0.75rem;
+    }
+
+    /* Botón más compacto en móvil */
+    .btn-agregar-carrito {
+        font-size: 0.8rem;
+        padding: 6px 4px;
+    }
+}
+
+
+/* --- Estilos responsivo del  modal detalle producto --- */
+
+/* Escritorio / Tablet por defecto */
+.modal-img-container {
+    min-height: 320px;
+    max-height: 450px;
+}
+
+.modal-producto-img {
+    max-height: 420px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.modal-desc-responsive {
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.modal-input-cant-wrapper {
+    width: 130px;
+}
+
+/* --- Ajustes exclusivos para Móviles en el Modal --- */
+@media (max-width: 575.98px) {
+    /* Reduce la imagen del modal para que ocupe menos de la mitad de la pantalla */
+    .modal-img-container {
+        min-height: 180px;
+        max-height: 200px;
+    }
+
+    .modal-producto-img {
+        max-height: 190px;
+    }
+
+    /* Reducción proporcional de títulos y descripción */
+    .modal-titulo-responsive {
+        font-size: 1.15rem;
+    }
+
+    .modal-desc-responsive {
+        max-height: 90px;
+        font-size: 0.85rem;
+    }
+
+    /* Selector de cantidad más angosto para asegurar que el botón quepa al lado */
+    .modal-input-cant-wrapper {
+        width: 105px;
+    }
+
+    .btn-cantidad-control {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+}
+
+/* El coso del max y min responsivo */
+/* Ancho por defecto para PC/Tablets */
+@media (min-width: 576px) {
+    .dropdown-menu-center-xs {
+        min-width: 230px;
+    }
+}
+
+/* Centrado y compactado únicamente para Smartphones */
+@media (max-width: 575.98px) {
+    .dropdown-menu-center-xs {
+        min-width: 180px !important;
+        max-width: 200px !important;
+        left: 50% !important;
+        top: 80% !important;
+        right: auto !important;
+        transform: translate(-50%, 0) !important; /* Centra horizontalmente exacto debajo de "Precio" */
+    }
+}
+
+
+
+/* Navegación de paginación */
+/* ==========================================
+   ESTILOS DE PAGINACIÓN BLANCA CON ACCENT NEGRO
+   ========================================== */
+
+/* Todos los botones: fondo blanco, texto/flechas negros */
+.pagination .page-link {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  color: #000000 !important;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Efecto hover suave al pasar el cursor */
+.pagination .page-link:hover {
+  background-color: #f8f9fa;
+  border-color: #ced4da;
+  color: #000000 !important;
+}
+
+/* Página activa: fondo negro con texto y borde blanco */
+.pagination .page-item.active .page-link {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* Botones deshabilitados (flechas apagadas cuando no se pueden clicar) */
+.pagination .page-item.disabled .page-link {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  color: #6c757d !important;
+  opacity: 0.6;
+}
+
+/* Quitar el borde/sombra azul al hacer clic */
+.pagination .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.125);
+}
+
+
+/* Cambiar el fondo a negro y texto a blanco para los ítems activos en los dropdowns */
+.dropdown-item.active, 
+.dropdown-item:active {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Opcional: Estilo cuando pasas el cursor por encima (hover / focus) si deseas uniformidad */
+.dropdown-item:hover, 
+.dropdown-item:focus {
+  background-color: #f8f9fa;
+  color: #000000;
+}

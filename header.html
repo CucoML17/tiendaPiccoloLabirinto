@@ -1,0 +1,144 @@
+<!-- Fragmento de Header (header.html) -->
+
+<!-- Barra superior negra (No sticky) -->
+<nav class="text-white py-0 px-3 d-none" style="background-color: #000000;">
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <a href="index.html" class="text-white font-weight-bold" style="text-decoration: underline;">
+        Menú principal
+      </a>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <!-- Enlace a Mis Pedidos -->
+      <a href="misPedidos.html" class="text-white mr-3 text-decoration-none">
+        <i class="fas fa-box-open mr-1"></i> Pedidos
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- SECCIÓN STICKY -->
+<div class="sticky-top bg-white border-bottom shadow-sm" style="z-index: 1020;">
+
+  <!-- Segunda sección: Logo y Buscador -->
+  <div class="container-fluid py-2 bg-light border-bottom">
+    <div class="row align-items-center">
+
+      <div class="col-12 col-md-1 mb-2 mb-md-0"></div>
+
+      <div class="col-12 col-md-2 mb-2 mb-md-0 text-center text-md-left">
+        <a href="index.html" class="navbar-brand font-weight-bold text-dark m-0">
+           Picolo labirinto
+        </a>
+      </div>
+
+      <!-- Buscador -->
+      <div class="col-12 col-md-7 mb-2 mb-md-0">
+        <form id="formBuscadorHeader" onsubmit="return false;">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button type="submit" id="btnBuscarHeader" class="btn bg-white border border-right-0 text-muted">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <input type="text" id="filtroNombre" class="form-control border-left-0" placeholder="Buscar productos por nombre..." aria-label="Buscar productos" autocomplete="off">
+          </div>
+        </form>
+      </div>
+
+      <div class="col-12 col-md-2 text-center text-md-right"></div>
+
+    </div>
+  </div>
+
+  <!-- Tercera sección: Navbar con Filtros Desplegables -->
+  <div class="container-fluid px-3 px-md-5 py-2 bg-white">
+    <div class="row align-items-center">
+
+      <div class="d-none d-md-block col-md-1"></div>
+      <div class="d-none d-md-block col-md-2"></div>
+
+      <!-- Contenedor Responsivo -->
+      <div class="col-12 col-md-9 d-flex justify-content-between align-items-center">
+
+        <!-- Izquierda: Filtros desplegables -->
+        <div class="d-flex align-items-center flex-wrap" style="gap: 15px;">
+
+          <!-- Dropdown Categorías -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-link text-dark font-weight-bold p-0 text-decoration-none" type="button" id="dropCategorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categorías <i class="fas fa-chevron-down small ml-1"></i>
+            </button>
+            <div class="dropdown-menu shadow" id="menuCategorias" aria-labelledby="dropCategorias">
+              <a class="dropdown-item active" href="#" data-value="">Todas las categorías</a>
+              <div class="dropdown-divider"></div>
+            </div>
+          </div>
+
+          <!-- Dropdown Niveles -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-link text-dark font-weight-bold p-0 text-decoration-none" type="button" id="dropNiveles" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Niveles <i class="fas fa-chevron-down small ml-1"></i>
+            </button>
+            <div class="dropdown-menu shadow" id="menuNiveles" aria-labelledby="dropNiveles">
+              <a class="dropdown-item active" href="#" data-value="">Todos los niveles</a>
+              <div class="dropdown-divider"></div>
+            </div>
+          </div>
+
+          <!-- Dropdown Rango de Precio -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-link text-dark font-weight-bold p-0 text-decoration-none" type="button" id="dropPrecio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Precio <i class="fas fa-chevron-down small ml-1"></i>
+            </button>
+            
+            <!-- Usamos la clase: dropdown-menu-center-xs -->
+            <div class="dropdown-menu dropdown-menu-center-xs p-2 p-sm-3 shadow" aria-labelledby="dropPrecio">
+              <label class="small font-weight-bold text-muted mb-1 mb-sm-2">Rango de precio ($)</label>
+              <div class="form-row">
+                <div class="col-6">
+                  <input type="number" step="0.01" min="0" class="form-control form-control-sm px-2" id="filtroPrecioMin" placeholder="Mín">
+                </div>
+                <div class="col-6">
+                  <input type="number" step="0.01" min="0" class="form-control form-control-sm px-2" id="filtroPrecioMax" placeholder="Máx" disabled>
+                </div>
+              </div>
+              <button class="btn btn-dark btn-sm btn-block mt-2 font-weight-bold" id="btnAplicarPrecio">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Botón Limpiar Filtros -->
+          <button class="btn btn-outline-secondary btn-sm py-0 px-2 font-weight-bold d-none align-self-center" id="btnLimpiarFiltros" style="font-size: 0.75rem; height: 26px;">
+            <i class="fas fa-times mr-1"></i>Limpiar filtros
+          </button>
+
+        </div>
+
+        <!-- Derecha: Mis Compras y Carrito -->
+        <div class="d-flex align-items-center">
+          <!-- Enlace Mis Compras con Badge Dinámico -->
+          <a href="misPedidos.html" class="text-dark font-weight-bold mr-3 text-decoration-none position-relative" id="btnMisCompras" title="Ver mis pedidos">
+            <i class="fas fa-shopping-bag mr-1"></i>
+            <span class="d-none d-sm-inline">Mis compras</span>
+            <!-- Badge: Inicia oculto (d-none) y solo se muestra si hay pedidos -->
+            <span class="badge badge-warning badge-pill position-absolute d-none" id="badgeMisCompras" style="top: -8px; right: -10px; font-size: 0.7rem;">
+              0
+            </span>
+          </a>
+
+          <!-- Carrito de Compras -->
+          <a href="carritoCompras.html" class="text-dark position-relative d-inline-block ml-2" id="btnVerCarrito" title="Carrito de compras">
+            <i class="fas fa-shopping-cart fa-lg"></i>
+            <span class="badge badge-danger badge-pill position-absolute" id="carritoBadge" style="top: -8px; right: -10px; font-size: 0.7rem;">
+              0
+            </span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
