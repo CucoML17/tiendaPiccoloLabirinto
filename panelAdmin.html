@@ -168,14 +168,7 @@
     <script src="js/footer-js.js"></script>    
 
     <!-- Script de Inyección Header Admin -->
-    <script>
-        fetch('header-admin.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            })
-            .catch(error => console.error('Error al cargar el header admin:', error));
-    </script>
+    <script src="js/cargador-header.js"></script>
 
     <!-- JS Dependencias -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
