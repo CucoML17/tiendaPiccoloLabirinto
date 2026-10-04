@@ -22,6 +22,8 @@ function marcarMenuActivo() {
 }
 
 
+// js/cargador-header.js
+
 function establecerFaviconAdmin() {
     let favicon = document.querySelector("link[rel*='icon']");
     if (!favicon) {
@@ -30,8 +32,15 @@ function establecerFaviconAdmin() {
         document.head.appendChild(favicon);
     }
     favicon.type = 'image/png';
-    favicon.href = '../img/logoTienda.png'; 
+    // Se usa 'img/logoTienda.png' sin el '../' para evitar salirte de la raíz del proyecto en GitHub Pages
+    favicon.href = 'img/logoTienda.png'; 
 }
+
+
+
+
+// Ejecutamos inmediatamente al cargar el script
+establecerFaviconAdmin();
 
 //Cargar e inyectar el header
 fetch('header-admin.html')
@@ -45,16 +54,3 @@ fetch('header-admin.html')
         }
     })
     .catch(error => console.error('Error al cargar el header admin:', error));
-
-
-    document.addEventListener('DOMContentLoaded', async () => {
-            //Inyección dinámica del favicon en el <head> de la página
-    let favicon = document.querySelector("link[rel*='icon']");
-    if (!favicon) {
-      favicon = document.createElement('link');
-      favicon.rel = 'icon';
-      document.head.appendChild(favicon);
-    }
-    favicon.type = 'image/png';
-    favicon.href = 'img/logoTienda.png';
-    });
