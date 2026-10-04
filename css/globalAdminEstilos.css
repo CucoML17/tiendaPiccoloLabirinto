@@ -1,3 +1,12 @@
+        html {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+
+        
+
 /* Variables de Color del Tema */
 :root {
     --btn-primary-custom: #1b2a47;        /* Azul Noche Profundo (Acciones Principales: Crear, Guardar) */
