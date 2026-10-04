@@ -41,7 +41,20 @@ fetch('header-admin.html')
         if (container) {
             container.innerHTML = data;
             marcarMenuActivo();
-            establecerFaviconAdmin();
+            
         }
     })
     .catch(error => console.error('Error al cargar el header admin:', error));
+
+
+    document.addEventListener('DOMContentLoaded', async () => {
+            //Inyección dinámica del favicon en el <head> de la página
+    let favicon = document.querySelector("link[rel*='icon']");
+    if (!favicon) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      document.head.appendChild(favicon);
+    }
+    favicon.type = 'image/png';
+    favicon.href = 'img/logoTienda.png';
+    });
