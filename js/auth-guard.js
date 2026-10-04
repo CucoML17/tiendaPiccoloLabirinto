@@ -16,7 +16,7 @@ export function verificarSesionAdmin() {
             return null;
         }
 
-        //Hace visible el cuerpo de la página
+        // Hace visible el cuerpo de la página
         document.documentElement.style.visibility = 'visible';
         document.documentElement.style.opacity = '1';
 
@@ -43,6 +43,9 @@ function expulsarAlLogin() {
 
     window.location.replace('login.html');
 }
+
+// Exponer globalmente para que sea invocado directamente sin importar módulos
+window.cerrarSesion = cerrarSesion;
 
 // Ejecución automática al cargar el módulo
 verificarSesionAdmin();

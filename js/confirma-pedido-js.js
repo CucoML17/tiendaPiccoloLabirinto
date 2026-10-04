@@ -174,7 +174,7 @@ async function enviarNotificacionAdmin(datosPedido, itemsCarrito) {
             detalles_productos: resumenProductos,
             id_pedido: datosPedido.id,
             
-            link_panel_admin: 'https://cucoml17.github.io/tiendaPicoloLabirinto/panelPedidosPendientes.html'
+            link_panel_admin: 'https://cucoml17.github.io/tiendaPiccoloLabirinto/panelPedidosPendientes.html'
         };
 
         await emailjs.send('service_p220r0m', 'template_pcavfrk', templateParams, 'AL9drILDhYzYCId17');
