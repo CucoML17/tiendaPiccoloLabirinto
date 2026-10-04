@@ -173,8 +173,8 @@ async function enviarNotificacionAdmin(datosPedido, itemsCarrito) {
             total_pagar: `$${datosPedido.totPagar.toFixed(2)}`,
             detalles_productos: resumenProductos,
             id_pedido: datosPedido.id,
-            // Puedes dejar la variable lista aunque el panel aún no exista
-            link_panel_admin: 'https://midominio.com/admin/pedidos.html'
+            
+            link_panel_admin: 'https://cucoml17.github.io/tiendaPicoloLabirinto/panelPedidosPendientes.html'
         };
 
         await emailjs.send('service_p220r0m', 'template_pcavfrk', templateParams, 'AL9drILDhYzYCId17');
