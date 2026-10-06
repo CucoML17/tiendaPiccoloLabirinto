@@ -239,13 +239,14 @@
                                 </div>
                                 <input 
                                     type="number" 
-                                    step="0.01" 
-                                    min="0.01" 
+                                    step="1" 
+                                    min="1" 
                                     class="form-control" 
                                     id="precioProducto" 
                                     name="precioProducto"
                                     placeholder="0.00" 
                                     required
+                                    onwheel="this.blur()"
                                 >
                                 <div class="invalid-feedback">
                                     Ingresa un precio válido.
@@ -270,6 +271,7 @@
                                     name="cantidadProducto"
                                     placeholder="0" 
                                     required
+                                    onwheel="this.blur()"
                                 >
                                 <div class="invalid-feedback">
                                     Ingresa una cantidad válida.
